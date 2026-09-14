@@ -107,7 +107,7 @@ async function setStatus(csrf, status) {
   })).text();
 }
 
-async changeProfile(csrf) {
+async function changeProfile(csrf) {
   await (await fetch("https://lainlife.org/edit?act=main", {
     "credentials": "include",
     "headers": {

